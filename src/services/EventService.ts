@@ -18,6 +18,7 @@ export default {
     return apiClient.get('/events/' + id)
   },
   saveEvent(event: Event){
-    return apiClient.post('/events', event)
+    const {id, ...eventData} = event
+    return apiClient.post('/events', eventData)
   }
 }
