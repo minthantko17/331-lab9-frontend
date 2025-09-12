@@ -1,3 +1,4 @@
+import type { Event } from '@/types'
 import axios from 'axios'
 
 const apiClient = axios.create({
@@ -15,5 +16,8 @@ export default {
   },
   getEvent(id: number) {
     return apiClient.get('/events/' + id)
+  },
+  saveEvent(event: Event){
+    return apiClient.post('/events', event)
   }
 }
