@@ -13,7 +13,7 @@ export interface Event {
 export interface Organizer{
   id: number
   address: string
-  organization_name: string
+  organizationName: string
 }
 
 export interface MessageState {
