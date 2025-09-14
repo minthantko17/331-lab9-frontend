@@ -10,10 +10,20 @@ export interface Event {
   organizer: string
 }
 
+export interface Organizer{
+  id: number
+  address: string
+  organization_name: string
+}
+
 export interface MessageState {
   message: string
 }
 
 export interface EventState {
   event: Event | null
+}
+
+export interface OrganizerState {
+  organizer: Organizer | null
 }

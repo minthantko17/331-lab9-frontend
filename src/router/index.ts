@@ -10,6 +10,7 @@ import NetworkErrorView from '@/views/NetworkErrorView.vue'
 import nProgress from 'nprogress'
 import EventService from '@/services/EventService'
 import AddEventView from '@/views/event/EventFormView.vue'
+import OrganizerListView from '@/views/OrganizerListView.vue'
 import { useEventStore } from '@/stores/event'
 
 const router = createRouter({
@@ -80,6 +81,12 @@ const router = createRouter({
       path: '/add-event',
       name: 'add-event',
       component: AddEventView
+    },
+    {
+      path:'/organizers',
+      name: 'organizer-list-view',
+      component: OrganizerListView,
+      props: (route)=>({ page: parseInt(route.query.page?.toString() || '1') })
     },
     {
       path: '/404/:resource',
