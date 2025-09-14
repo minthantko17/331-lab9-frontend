@@ -16,6 +16,7 @@ import OrganizerListView from '@/views/OrganizerListView.vue'
 import OrganizerLayoutView from '@/views/organizers/LayoutView.vue'
 import OrganizerService from '@/services/OrganizerService'
 import OrganizerDetailView from '@/views/organizers/DetailView.vue'
+import AddOrganizerView from '@/views/organizers/OrganizerFormView.vue'
 import { useOrganizerStore } from '@/stores/organizer'
 
 
@@ -124,6 +125,11 @@ const router = createRouter({
           component: OrganizerDetailView
         }
       ]
+    },
+    {
+      path: '/add-organizer',
+      name: 'add-organizer',
+      component: AddOrganizerView
     },
     {
       path: '/404/:resource',
