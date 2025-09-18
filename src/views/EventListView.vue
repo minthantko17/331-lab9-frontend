@@ -9,8 +9,9 @@ import { Input } from 'postcss'
 const router = useRouter()
 const events = ref<Event[] | null>(null)
 const totalEvents = ref(0)
+const perPage = 1
 const hasNexPage = computed(() => {
-  const totalPages = Math.ceil(totalEvents.value / 3)
+  const totalPages = Math.ceil(totalEvents.value / perPage)
   return page.value < totalPages
 })
 const props = defineProps({
@@ -22,14 +23,7 @@ const props = defineProps({
 const page = computed(() => props.page)
 onMounted(() => {
   watchEffect(() => {
-    EventService.getEvents(3, page.value)
-      .then((response) => {
-        events.value = response.data
-        totalEvents.value = response.headers['x-total-count']
-      })
-      .catch(() => {
-        router.push({ name: 'network-error-view' })
-      })
+    updateKeyword();
   })
 })
 
@@ -37,9 +31,9 @@ const keyword = ref('')
 function updateKeyword () {
   let queryFunction;
   if(keyword.value ===  ''){
-    queryFunction = EventService.getEvents(3, page.value)
+    queryFunction = EventService.getEvents(perPage, page.value)
   } else {
-    queryFunction = EventService.getEventsByKeyword(keyword.value, 3, page.value)
+    queryFunction = EventService.getEventsByKeyword(keyword.value, perPage, page.value)
   }
   queryFunction
     .then((response)=>{
